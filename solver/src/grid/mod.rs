@@ -2,7 +2,7 @@ use std::ops::Index;
 use super::cell::Cell;
 
 pub struct Grid {
-    cells: Vec<Cell>,
+    pub cells: Vec<Cell>,
 }
 
 impl Grid {
@@ -36,5 +36,17 @@ mod tests{
         let ref cell = grid[(8, 8)];
 
         assert_eq!(vec!(1, 2, 3, 4, 5, 6, 7, 8, 9), cell.options());
+    }
+
+    #[test]
+    fn should_iterate_over_cells() {
+        let grid: Grid = Grid::new();
+        let mut cell_count = 0;
+
+        for _ in grid.cells {
+           cell_count += 1;
+        }
+
+        assert_eq!(81, cell_count);
     }
 }
